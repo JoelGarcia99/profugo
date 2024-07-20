@@ -1,6 +1,5 @@
 use std::{
-    io,
-    process::Output,
+    fs::File, io::{self, Read}, path::Path, process::Output
 };
 
 use dump_db::{dump_mysql, dump_postgres};
@@ -53,9 +52,12 @@ fn main() {
     // later
     let mut logs = String::new();
 
-    let config_json = include_str!("../config.json");
+    let config_path = Path::new("config.json");
+    let mut config_file = File::open(config_path).expect("Unable to open config file, please make sure it exists");
+    let mut config_json = String::new();
+    config_file.read_to_string(&mut config_json).expect("Unable to read JSON config file");
 
-    let config: ProfugoConfig = match serde_json::from_str(config_json) {
+    let config: ProfugoConfig = match serde_json::from_str(&config_json) {
         Ok(config) => config,
         Err(e) => {
             logs.push_str(&format!(

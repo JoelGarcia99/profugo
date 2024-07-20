@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 echo "VERIFYING THE FOLDER 'backups' EXISTS"
 
@@ -15,7 +16,7 @@ if [ ! -d "logs" ]; then
 fi
 
 echo "COMPILING PROFUGO"
-cargo build
+cargo build --release
 
 echo "DONE"
 

@@ -2,6 +2,9 @@
 name = "profugo"
 version = "0.1.0"
 edition = "2021"
+authors = ["Joel García <garciajunior796@gmail.com>"]
+
+exclude = ["config.json"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
